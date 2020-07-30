@@ -1,29 +1,42 @@
 from controller import Phillips_Hue_Automation
 import keyboard as kb
+import speech_recognition as sr
+
+r = sr.Recognizer()
+
 
 controller = Phillips_Hue_Automation()
 
 escape = False
 while(not escape):
-    if(kb.is_pressed('esc')):
+    text = ''
+    try:
+        with sr.Microphone() as source:
+            audio_data = r.record(source, duration=3)
+            text = r.recognize_google(audio_data)
+            print(text)
+    except:
+        pass
+    
+    if(text == 'terminate' or text == 'Terminate'):
         break
-    if(kb.is_pressed('down')):
+    if(text == 'Down' or text == 'down'):
         controller.decrease_hue()
-    elif(kb.is_pressed('up')):
+    elif(text == 'Up' or text == 'up'):
         controller.increase_hue()
-    elif(kb.is_pressed('left')):
+    elif(text == 'Left' or text == 'left'):
         controller.decrease_sat()
-    elif(kb.is_pressed('right')):
+    elif(text == 'Right' or text == 'right'):
         controller.increase_sat()
-    elif(kb.is_pressed('enter')):
+    elif(text == 'Reset' or text == 'reset'):
         controller.reset_vals()
-    elif(kb.is_pressed('r')):
+    elif(text == 'Red' or text == 'red'):
         controller.make_colour(0,250)
-    elif(kb.is_pressed('g')):
+    elif(text == 'Green' or text == 'green'):
         controller.make_colour(500,120)
-    elif(kb.is_pressed('b')):
+    elif(text == 'Purple' or text == 'purple'):
         controller.make_colour(58000,250)
-    elif(kb.is_pressed('1')):
+    elif(text == 'On' or text == 'on'):
         controller.turn_lamps_on()
-    elif(kb.is_pressed('0')):
+    elif(text == 'Off' or text == 'off'):
         controller.turn_lamps_off()
