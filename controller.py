@@ -15,10 +15,10 @@ class Phillips_Hue_Automation():
         pass
     def increase_hue(self):
         for light in self.__light_name_list:
-            if(self.__light_name_list[light].hue + 500 > self.__MAX_HUE):
+            if(self.__light_name_list[light].hue + 1000 > self.__MAX_HUE):
                 self.__light_name_list[light].hue = self.__MAX_HUE
             else:
-                self.__light_name_list[light].hue += 500
+                self.__light_name_list[light].hue += 1000
 
     def increase_sat(self):
 
@@ -34,10 +34,10 @@ class Phillips_Hue_Automation():
 
     def decrease_hue(self):
         for light in self.__light_name_list:
-            if(self.__light_name_list[light].hue - 500 < self.__MIN_HUE):
+            if(self.__light_name_list[light].hue - 1000 < self.__MIN_HUE):
                 self.__light_name_list[light].hue = self.__MIN_HUE
             else:
-                self.__light_name_list[light].hue -= 50
+                self.__light_name_list[light].hue -= 1000
     def decrease_sat(self):
         for light in self.__light_name_list:
             if(self.__light_name_list[light].saturation - 115 < self.__MIN_SAT):
@@ -53,29 +53,13 @@ class Phillips_Hue_Automation():
         for light in self.__light_name_list:
             self.__light_name_list[light].hue = hue
             self.__light_name_list[light].saturation = sat
+    def turn_lamps_on(self):
+        self.__b.set_light(1,'on',True)
+        self.__b.set_light(2,'on',True)
+    def turn_lamps_off(self):
+        self.__b.set_light(1,'on',False)
+        self.__b.set_light(2,'on',False)
 
 
-controller = Phillips_Hue_Automation()
-
-escape = False
-while(not escape):
-    if(kb.is_pressed('esc')):
-        break
-    if(kb.is_pressed('down')):
-        controller.decrease_hue()
-    elif(kb.is_pressed('up')):
-        controller.increase_hue()
-    elif(kb.is_pressed('left')):
-        controller.decrease_sat()
-    elif(kb.is_pressed('right')):
-        controller.increase_sat()
-    elif(kb.is_pressed('enter')):
-        controller.reset_vals()
-    elif(kb.is_pressed('r')):
-        controller.make_colour(30,200)
-    elif(kb.is_pressed('g')):
-        controller.make_colour(500,120)
-    elif(kb.is_pressed('b')):
-        controller.make_colour(58000,250)
         
         
