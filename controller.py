@@ -29,8 +29,6 @@ class Phillips_Hue_Automation():
                 self.__light_name_list[light].saturation = self.__MAX_SAT
             else:
                 self.__light_name_list[light].saturation += 10
-                print()
-
 
     def decrease_hue(self):
         for light in self.__light_name_list:
@@ -43,8 +41,8 @@ class Phillips_Hue_Automation():
             if(self.__light_name_list[light].saturation - 115 < self.__MIN_SAT):
                 self.__light_name_list[light].saturation = self.__MIN_SAT
             else:
-
                 self.__light_name_list[light].saturation -= 50
+
     def reset_vals(self):
         for light in self.__light_name_list:
             self.__light_name_list[light].hue = 10
@@ -59,7 +57,3 @@ class Phillips_Hue_Automation():
     def turn_lamps_off(self):
         self.__b.set_light(1,'on',False)
         self.__b.set_light(2,'on',False)
-
-
-        
-        
