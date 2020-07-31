@@ -12,7 +12,11 @@ class Phillips_Hue_Automation():
     __light_name_list = __b.get_light_objects('name')
 
     def __init__(self):
-        pass
+        self.__b.set_light(1,'on',True)
+        self.__b.set_light(2,'on',True)
+        for light in self.__light_name_list:
+            self.__light_name_list[light].brightness = 254  
+        
     def increase_hue(self):
         for light in self.__light_name_list:
             if(self.__light_name_list[light].hue + 1000 > self.__MAX_HUE):

@@ -1,5 +1,4 @@
 from controller import Phillips_Hue_Automation
-import keyboard as kb
 import speech_recognition as sr
 
 r = sr.Recognizer()
@@ -12,13 +11,15 @@ while(not escape):
     text = ''
     try:
         with sr.Microphone() as source:
-            audio_data = r.record(source, duration=3)
+            
+            audio_data = r.record(source,duration=1)
             text = r.recognize_google(audio_data)
             print(text)
     except:
         pass
     
     if(text == 'terminate' or text == 'Terminate'):
+        controller.turn_lamps_off()
         break
     if(text == 'Down' or text == 'down'):
         controller.decrease_hue()
