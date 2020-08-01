@@ -1,7 +1,5 @@
 from controller import Phillips_Hue_Automation
 import speech_recognition as sr
-import sys
-import threading
 
 controller = Phillips_Hue_Automation()
 stop_it = False
@@ -14,7 +12,9 @@ def callback(recognizer, audio):
         if text == 'terminate':
             controller.turn_lamps_off()
             stop_it = True
-        if text == 'down':
+        # if text.find('change') != -1 and text.find('colour') != -1:
+        #     print('jere') 
+        elif text == 'down':
             controller.decrease_hue()
         elif text == 'up':
             controller.increase_hue()

@@ -7,12 +7,15 @@ class Phillips_Hue_Automation():
     __MIN_SAT = -30
     __b = Bridge(ip)
     __b.connect()
-
+    __light1_isOn = False
+    __light2_isOn = False
     __light_name_list = __b.get_light_objects('name')
 
     def __init__(self):
         self.__b.set_light(1,'on',True)
         self.__b.set_light(2,'on',True)
+        self.__light1_isOn = True
+        self.__light2_isOn = True
         for light in self.__light_name_list:
             self.__light_name_list[light].brightness = 254  
         
@@ -57,6 +60,16 @@ class Phillips_Hue_Automation():
     def turn_lamps_on(self):
         self.__b.set_light(1,'on',True)
         self.__b.set_light(2,'on',True)
+        self.__light1_isOn = True
+        self.__light2_isOn = True
     def turn_lamps_off(self):
         self.__b.set_light(1,'on',False)
         self.__b.set_light(2,'on',False)
+        self.__light1_isOn = False
+        self.__light2_isOn = False
+    def is_on_light1(self):
+        return self.__light1_isOn
+    def is_on_light2(self):
+        return self.__light2_isOn  
+    def all_lights_on(self):
+        return self.__light1_isOn and self.__light2_isOn  
