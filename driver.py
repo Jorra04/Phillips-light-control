@@ -11,28 +11,28 @@ def callback(recognizer, audio):
     try:
         text = recognizer.recognize_google(audio).lower()
         print(text)
-        if(text == 'terminate' or text == 'Terminate'):
+        if text == 'terminate':
             controller.turn_lamps_off()
             stop_it = True
-        if(text == 'Down' or text == 'down'):
+        if text == 'down':
             controller.decrease_hue()
-        elif(text == 'Up' or text == 'up'):
+        elif text == 'up':
             controller.increase_hue()
-        elif(text == 'Left' or text == 'left'):
+        elif text == 'left':
             controller.decrease_sat()
-        elif(text == 'Right' or text == 'right'):
+        elif text == 'right':
             controller.increase_sat()
-        elif(text == 'Reset' or text == 'reset'):
+        elif text == 'reset':
             controller.reset_vals()
-        elif(text == 'Red' or text == 'red'):
+        elif text == 'red':
             controller.make_colour(0,250)
-        elif(text == 'Green' or text == 'green'):
+        elif text == 'green':
             controller.make_colour(500,120)
-        elif(text == 'Purple' or text == 'purple'):
+        elif text == 'purple':
             controller.make_colour(58000,250)
-        elif(text == 'On' or text == 'on'):
+        elif text == 'on' :
             controller.turn_lamps_on()
-        elif(text == 'Off' or text == 'off'):
+        elif text == 'off':
             controller.turn_lamps_off()
     except:
         # print("error")
