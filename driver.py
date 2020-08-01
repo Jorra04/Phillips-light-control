@@ -9,7 +9,7 @@ def callback(recognizer, audio):
     text = '' 
     global stop_it                         
     try:
-        text = recognizer.recognize_google(audio)
+        text = recognizer.recognize_google(audio).lower()
         print(text)
         if(text == 'terminate' or text == 'Terminate'):
             controller.turn_lamps_off()
@@ -43,7 +43,6 @@ r.energy_threshold = 4000
 r.pause_threshold = 0.8
 just_try_and_stop_me = r.listen_in_background(sr.Microphone(), callback)
 
-# [<_MainThread(MainThread, started 164184)>, <Thread(Thread-1, started daemon 164240)>]
 import time
 while True: 
     if stop_it:

@@ -1,6 +1,5 @@
 from creds import bridge_ip as ip
 from phue import Bridge
-import keyboard as kb
 class Phillips_Hue_Automation():
     __MAX_HUE = 66010
     __MAX_SAT = 3250
