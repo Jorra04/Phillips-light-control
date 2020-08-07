@@ -1,10 +1,10 @@
 from creds import bridge_ip as ip
 from phue import Bridge
 class Phillips_Hue_Automation():
-    __MAX_HUE = 66010
-    __MAX_SAT = 3250
-    __MIN_HUE = -40
-    __MIN_SAT = -30
+    __MAX_HUE = 65535
+    __MAX_SAT = 254
+    __MIN_HUE = 0
+    __MIN_SAT = 0
     __b = Bridge(ip)
     __b.connect()
     __light1_isOn = False
